@@ -2079,11 +2079,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hp\\Desktop\\MiniProject_CourseApplicaton\\MiniProject_CourseApplicaton\\MiniProject_CourseApplicaton.csproj",
+      "projectUniqueName": "C:\\Users\\Hp\\Desktop\\Mini_Project_CourseApplicaton\\MiniProject_CourseApplicaton\\MiniProject_CourseApplicaton.csproj",
       "projectName": "MiniProject_CourseApplicaton",
-      "projectPath": "C:\\Users\\Hp\\Desktop\\MiniProject_CourseApplicaton\\MiniProject_CourseApplicaton\\MiniProject_CourseApplicaton.csproj",
+      "projectPath": "C:\\Users\\Hp\\Desktop\\Mini_Project_CourseApplicaton\\MiniProject_CourseApplicaton\\MiniProject_CourseApplicaton.csproj",
       "packagesPath": "C:\\Users\\Hp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hp\\Desktop\\MiniProject_CourseApplicaton\\MiniProject_CourseApplicaton\\obj\\",
+      "outputPath": "C:\\Users\\Hp\\Desktop\\Mini_Project_CourseApplicaton\\MiniProject_CourseApplicaton\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2100,8 +2100,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Hp\\Desktop\\MiniProject_CourseApplicaton\\Service\\Service.csproj": {
-              "projectPath": "C:\\Users\\Hp\\Desktop\\MiniProject_CourseApplicaton\\Service\\Service.csproj"
+            "C:\\Users\\Hp\\Desktop\\Mini_Project_CourseApplicaton\\Service\\Service.csproj": {
+              "projectPath": "C:\\Users\\Hp\\Desktop\\Mini_Project_CourseApplicaton\\Service\\Service.csproj"
             }
           }
         }

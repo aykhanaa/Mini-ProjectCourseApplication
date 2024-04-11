@@ -2039,11 +2039,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hp\\Desktop\\MiniProject_CourseApplicaton\\Repository\\Repository.csproj",
+      "projectUniqueName": "C:\\Users\\Hp\\Desktop\\Mini_Project_CourseApplicaton\\Repository\\Repository.csproj",
       "projectName": "Repository",
-      "projectPath": "C:\\Users\\Hp\\Desktop\\MiniProject_CourseApplicaton\\Repository\\Repository.csproj",
+      "projectPath": "C:\\Users\\Hp\\Desktop\\Mini_Project_CourseApplicaton\\Repository\\Repository.csproj",
       "packagesPath": "C:\\Users\\Hp\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hp\\Desktop\\MiniProject_CourseApplicaton\\Repository\\obj\\",
+      "outputPath": "C:\\Users\\Hp\\Desktop\\Mini_Project_CourseApplicaton\\Repository\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2060,8 +2060,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Hp\\Desktop\\MiniProject_CourseApplicaton\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\Hp\\Desktop\\MiniProject_CourseApplicaton\\Domain\\Domain.csproj"
+            "C:\\Users\\Hp\\Desktop\\Mini_Project_CourseApplicaton\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Hp\\Desktop\\Mini_Project_CourseApplicaton\\Domain\\Domain.csproj"
             }
           }
         }

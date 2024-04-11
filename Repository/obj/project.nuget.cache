@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "diuNJfqS6Vsf2Zw+dRggx/c3AzL1JE8H+ENCAg3TtSKzDIj7FT0hsTuxv87iDs+PsQWfynC31qEHvo4KGt+eOQ==",
+  "dgSpecHash": "WyzqaeZQl2RVIdv4SS8f91/pXLOZ7PNg+d5yTP9J5V0fFO2A9PFP/PBooalo76xiIxb7a9RXwOCRb5cNiQvmrw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Hp\\Desktop\\MiniProject_CourseApplicaton\\Repository\\Repository.csproj",
+  "projectFilePath": "C:\\Users\\Hp\\Desktop\\Mini_Project_CourseApplicaton\\Repository\\Repository.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Hp\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Hp\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
