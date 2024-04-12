@@ -23,7 +23,7 @@ namespace Service.Services
 
             if (data is null)
             {
-                throw new Exception("Data not found");
+                throw new ("Data not found");
             }
             _context.Educations.Remove(data);
 

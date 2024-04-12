@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <Folder Include="Helpers\Enums\" />
-    <Folder Include="Helpers\Extensions\" />
   </ItemGroup>
 
 </Project>
