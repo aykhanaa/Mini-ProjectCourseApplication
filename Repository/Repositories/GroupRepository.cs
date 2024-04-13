@@ -13,6 +13,12 @@ namespace Repository.Repositories
         {
             _context = new AppDbContext();
         }
+
+        public Task CreateAsync(Group group)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task DeleteAsnyc(int? id)
         {
             throw new NotImplementedException();

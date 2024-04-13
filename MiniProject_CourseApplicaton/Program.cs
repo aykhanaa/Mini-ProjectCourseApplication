@@ -21,12 +21,15 @@ EducationController educationController = new EducationController();
 
 //await educationController.DeleteAsnyc();
 
-
-
-
 //await educationController.CreateAsync();
+
 await educationController.GetAllAsync();
 
+//await educationController.GetByIdAsync();
+
+//await educationController.SearchByNameAsync();
+
+await educationController.GetAllWithGroupsAsync();
 
 
 

@@ -15,7 +15,7 @@ namespace Service.Services
         {
             _context = new AppDbContext();
         }
-
+        
 
         public async Task CreateAsync(Education education)
         {

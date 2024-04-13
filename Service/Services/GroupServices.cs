@@ -14,6 +14,12 @@ namespace Service.Services
         {
             _context = new AppDbContext();
         }
+
+        public async Task CreateAsync(Group group)
+        {
+            await _context.Educations.AddAsync(group);
+            await _context.SaveChangesAsync();
+        }
         public async Task DeleteAsnyc(int? id)
         {
             if (id is null) throw new ArgumentNullException(nameof(id));
@@ -79,5 +85,7 @@ namespace Service.Services
         {
             throw new NotImplementedException();
         }
+
+        
     }
 }

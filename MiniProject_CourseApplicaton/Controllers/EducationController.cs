@@ -50,15 +50,17 @@ namespace MiniProject_CourseApplicaton.Controllers
             var data = await _educationService.GetAllAsync();
             if (data.Any(m => m.Color == color))
             {
-                ConsoleColor.Red.WriteConsole("Please add new color.This color is had");
+                ConsoleColor.Red.WriteConsole("Please add new color.This color is exsist");
                 goto Name;
             }
+
 
             else
             {
                 try
                 {
-                    await _educationService.CreateAsync(new Domain.Models.Education { Name = eduname.Trim(), Color = color.Trim() });
+                    DateTime time = DateTime.Now;
+                    await _educationService.CreateAsync(new Domain.Models.Education { Name = eduname.Trim().ToLower(), Color = color.Trim().ToLower(),createdDate=time });
                     ConsoleColor.Green.WriteConsole("Data successfully added");
                 }
                 catch (Exception ex)
@@ -67,6 +69,9 @@ namespace MiniProject_CourseApplicaton.Controllers
                     goto Color;
                 }
             }
+            
+
+            
         }
 
 
