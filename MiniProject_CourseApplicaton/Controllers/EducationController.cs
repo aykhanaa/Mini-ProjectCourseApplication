@@ -2,6 +2,7 @@
 using Service.Services;
 using Service.Services.Interfaces;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace MiniProject_CourseApplicaton.Controllers
 {
@@ -13,6 +14,61 @@ namespace MiniProject_CourseApplicaton.Controllers
         {
             _educationService = new EducatonServices();
         }
+
+
+        public async Task CreateAsync()
+        {
+        Name: ConsoleColor.Cyan.WriteConsole("Add  Education name:");
+            string eduname = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(eduname))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                goto Name;
+            }
+            var result = await _educationService.GetAllAsync();
+            if(result.Any(m=>m.Name == eduname))
+            {
+                ConsoleColor.Red.WriteConsole("Please add new name.This name is had");
+                goto Name;
+            }
+
+            if (!Regex.IsMatch(eduname, @"^[\p{L}\p{M}' \.\-]+$"))
+            {
+                ConsoleColor.Red.WriteConsole("Format is wrong");
+                goto Name;
+            }
+
+
+        Color: ConsoleColor.Cyan.WriteConsole("Add education color:");
+            string color = Console.ReadLine();
+           
+            if (string.IsNullOrWhiteSpace(color))
+            {
+                ConsoleColor.Red.WriteConsole("Input can't be empty");
+                goto Color;
+            }
+            var data = await _educationService.GetAllAsync();
+            if (data.Any(m => m.Color == color))
+            {
+                ConsoleColor.Red.WriteConsole("Please add new color.This color is had");
+                goto Name;
+            }
+
+            else
+            {
+                try
+                {
+                    await _educationService.CreateAsync(new Domain.Models.Education { Name = eduname.Trim(), Color = color.Trim() });
+                    ConsoleColor.Green.WriteConsole("Data successfully added");
+                }
+                catch (Exception ex)
+                {
+                    ConsoleColor.Red.WriteConsole(ex.Message);
+                    goto Color;
+                }
+            }
+        }
+
 
         public async Task DeleteAsnyc()
         {
@@ -40,6 +96,7 @@ namespace MiniProject_CourseApplicaton.Controllers
 
         }
 
+
         public async Task GetAllAsync()
         {
             var datas = await _educationService.GetAllAsync();
@@ -53,6 +110,7 @@ namespace MiniProject_CourseApplicaton.Controllers
                 ConsoleColor.Cyan.WriteConsole(data);
             }
         }
+
 
         public async Task GetByIdAsync()
         {
@@ -82,6 +140,8 @@ namespace MiniProject_CourseApplicaton.Controllers
             }
         }
 
+
+
         public async Task SearchByNameAsync()
         {
             ConsoleColor.Yellow.WriteConsole("Add Education name;");
@@ -109,8 +169,6 @@ namespace MiniProject_CourseApplicaton.Controllers
 
                 }
 
-
-
             }
             catch (Exception ex)
             {
@@ -119,10 +177,30 @@ namespace MiniProject_CourseApplicaton.Controllers
                 goto Name;
             }
 
-
-
         }
- 
+
+        public async Task GetAllWithGroupsAsync()
+        {
+            try
+            {
+                var educations = await _educationService.GetAllWithGroupsAsync();
+                if (educations.Count == 0)
+                {
+                    ConsoleColor.Red.WriteConsole("Data not found");
+                }
+                foreach (var item in educations)
+                {
+                    string result = $"Name: {item.Name},Groups: {string.Join(",", item.Name)}";
+                    Console.WriteLine(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                ConsoleColor.Red.WriteConsole(ex.Message) ;
+            }
+        }
+
+
 
 
 

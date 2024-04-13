@@ -12,6 +12,7 @@ namespace Repository.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=DESKTOP-M839BQT\\SQLEXPRESS;Database=EntityFrameworkDb;Trusted_Connection=true;TrustServerCertificate=True");
+            
         }
     }
 }

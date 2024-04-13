@@ -16,6 +16,7 @@ namespace Domain.Models
         public string Name { get; set; }
         [Required]
         public string Color { get; set; }
-        public List<Group> Group { get; set; }
+        public List<Group> Groups { get; set; }
+        
     }
 }

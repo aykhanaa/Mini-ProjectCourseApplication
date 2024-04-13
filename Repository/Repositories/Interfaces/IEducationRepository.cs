@@ -4,6 +4,7 @@ namespace Repository.Repositories.Interfaces
 {
     public interface IEducationRepository
     {
+        Task CreateAsync(Education education);
         Task<List<Education>> GetAllAsync();
         Task<Education> GetByIdAsync(int id);
         Task DeleteAsnyc(int? id);

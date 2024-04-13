@@ -1,8 +1,8 @@
 ﻿using Domain.Models;
 
-namespace Service.Services.Interfaces
+namespace Repository.Repositories.Interfaces
 {
-    public interface IGroupServices
+    public interface IGroupRepository
     {
         Task<List<Group>> GetAllAsync();
         Task<Group> GetByIdAsync(int id);
@@ -12,7 +12,5 @@ namespace Service.Services.Interfaces
         Task<List<Group>> SortWithCapacityAsync(string order);
         Task<Group> Update(Group group);
         Task<List<Group>> FilterByEducationName(string name);
-
-
     }
 }

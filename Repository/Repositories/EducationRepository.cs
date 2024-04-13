@@ -15,7 +15,12 @@ namespace Repository.Repositories
             _context = new AppDbContext();
         }
 
-
+        public async Task CreateAsync(Education education)
+        {
+            await _context.Educations.AddAsync(education);
+            await _context.SaveChangesAsync();
+        }
+    
         public async Task DeleteAsnyc(int? id)
         {
            _context.Remove(id);
@@ -29,7 +34,7 @@ namespace Repository.Repositories
 
         public async Task<List<Education>> GetAllWithGroupsAsync()
         {
-           return await _context.Educations.Include(m=>m.Group).ToListAsync();
+           return await _context.Educations.Include(m=>m.Groups).ToListAsync();
         }
 
         public async Task<Education> GetByIdAsync(int id)
