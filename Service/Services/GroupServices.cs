@@ -9,6 +9,8 @@ namespace Service.Services
     public class GroupServices : IGroupServices
     {
         private readonly AppDbContext _context;
+        private int count = 1;
+
 
         public GroupServices()
         {
@@ -17,7 +19,7 @@ namespace Service.Services
 
         public async Task CreateAsync(Group group)
         {
-            await _context.Educations.AddAsync(group);
+            await _context.Groups.AddAsync(group);
             await _context.SaveChangesAsync();
         }
         public async Task DeleteAsnyc(int? id)
@@ -66,15 +68,28 @@ namespace Service.Services
             return search;
         }
 
-        public Task<List<Group>> SortWithCapacityAsync(string order)
+        public async Task<List<Group>> SortWithCapacityAsync(string text)
         {
-            throw new NotImplementedException();
+            //return await _context.SortWithCapacityAsync(text);
+            if(text == "Asc")
+            {
+                return await _context.Groups.OrderBy(m => m.Capacity).ToListAsync();
+            }
+            else if(text == "Desc")
+            {
+                return await _context.Groups.OrderByDescending(m => m.Capacity).ToListAsync();
+            }
+            else
+            {
+                throw new Exception("Invalid filter");
+            }
+            
         }
 
         public async Task<List<Group>> FilterByEducationName(string name)
         {
-           var data = await _context.Groups.Include(m =>m.Education).Where( m=>m.Education.Name == name).ToListAsync();
-            if(data is null)
+            var data = await _context.Groups.Include(m => m.Education).Where(m => m.Education.Name == name).ToListAsync();
+            if (data is null)
             {
                 throw new NotFoundException("Data not found");
             }
@@ -86,6 +101,9 @@ namespace Service.Services
             throw new NotImplementedException();
         }
 
-        
+        public Task<List<Group>> FilterByEducationNameAsync(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

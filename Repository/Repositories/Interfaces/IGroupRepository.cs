@@ -10,7 +10,7 @@ namespace Repository.Repositories.Interfaces
         Task DeleteAsnyc(int? id);
         Task<List<Group>> SearchByNameAsync(string serchText);
         Task<List<Group>> GetAllWithEducationIdAsync(int? id);
-        Task<List<Group>> SortWithCapacityAsync(string order);
+        Task<List<Group>> SortWithCapacityAsync(string text);
         Task<Group> Update(Group group);
         Task<List<Group>> FilterByEducationName(string name);
     }

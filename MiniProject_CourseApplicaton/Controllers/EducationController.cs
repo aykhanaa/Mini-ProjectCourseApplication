@@ -18,7 +18,7 @@ namespace MiniProject_CourseApplicaton.Controllers
 
         public async Task CreateAsync()
         {
-        Name: ConsoleColor.Cyan.WriteConsole("Add  Education name:");
+        Name: ConsoleColor.Yellow.WriteConsole("Add  Education name:");
             string eduname = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(eduname))
             {
@@ -28,7 +28,7 @@ namespace MiniProject_CourseApplicaton.Controllers
             var result = await _educationService.GetAllAsync();
             if(result.Any(m=>m.Name == eduname))
             {
-                ConsoleColor.Red.WriteConsole("Please add new name.This name is had");
+                ConsoleColor.Red.WriteConsole("Please add new name.This name is exsist");
                 goto Name;
             }
 
@@ -39,7 +39,7 @@ namespace MiniProject_CourseApplicaton.Controllers
             }
 
 
-        Color: ConsoleColor.Cyan.WriteConsole("Add education color:");
+        Color: ConsoleColor.Yellow.WriteConsole("Add education color:");
             string color = Console.ReadLine();
            
             if (string.IsNullOrWhiteSpace(color))
@@ -52,6 +52,11 @@ namespace MiniProject_CourseApplicaton.Controllers
             {
                 ConsoleColor.Red.WriteConsole("Please add new color.This color is exsist");
                 goto Name;
+            }
+            if (!Regex.IsMatch(eduname, @"^[\p{L}\p{M}' \.\-]+$"))
+            {
+                ConsoleColor.Red.WriteConsole("Color format is wrong");
+                goto Color;
             }
 
 
@@ -111,7 +116,7 @@ namespace MiniProject_CourseApplicaton.Controllers
             }
             foreach (var item in datas)
             {
-                string data = $"Name:{item.Name},Color: {item.Color}";
+                string data = $"Name:{item.Name},Color: {item.Color},CreatedDate: {item.createdDate}";
                 ConsoleColor.Cyan.WriteConsole(data);
             }
         }

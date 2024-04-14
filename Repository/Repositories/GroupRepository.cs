@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using Repository.Data;
 using Repository.Repositories.Interfaces;
 
@@ -14,29 +15,44 @@ namespace Repository.Repositories
             _context = new AppDbContext();
         }
 
-        public Task CreateAsync(Group group)
+        public async Task CreateAsync(Group group)
         {
-            throw new NotImplementedException();
+            await _context.Groups.AddAsync(group);
+            await _context.SaveChangesAsync();
         }
 
-        public Task DeleteAsnyc(int? id)
+        public async Task DeleteAsnyc(int? id)
         {
-            throw new NotImplementedException();
+            if (id is null) throw new ArgumentNullException(nameof(id));
+            var data = _context.Groups.FirstOrDefault(m => m.Id == id);
+
+            if (data is null)
+            {
+                throw new("Data not found");
+            }
+            _context.Groups.Remove(data);
+
+            await _context.SaveChangesAsync();
         }
 
-        public Task<List<Group>> FilterByEducationName(string name)
+        public async Task<List<Group>> FilterByEducationName(string name)
         {
-            throw new NotImplementedException();
+            var data = await _context.Groups.Include(m => m.Education).Where(m => m.Education.Name == name).ToListAsync();
+            if (data is null)
+            {
+                throw new NotFoundException("Data not found");
+            }
+            return data;
         }
 
-        public Task<List<Group>> GetAllAsync()
+        public async Task<List<Group>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Groups.ToListAsync();
         }
 
-        public Task<List<Group>> GetAllWithEducationIdAsync(int? id)
+        public async Task<List<Group>> GetAllWithEducationIdAsync(int? id)
         {
-            throw new NotImplementedException();
+            return await _context.Groups.Include(m => m.Id).ToListAsync();
         }
 
         public Task<Group> GetByIdAsync(int id)
@@ -44,14 +60,20 @@ namespace Repository.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<List<Group>> SearchByNameAsync(string serchText)
+        public async Task<List<Group>> SearchByNameAsync(string serchText)
         {
-            throw new NotImplementedException();
+            var search = await _context.Groups.Where(m => m.Name.ToLower().Trim().Contains(serchText)).ToListAsync();
+
+            if (search is null)
+            {
+                throw new NotFoundException("Data not found");
+            }
+            return search;
         }
 
-        public Task<List<Group>> SortWithCapacityAsync(string order)
+        public async Task<List<Group>> SortWithCapacityAsync(string text)
         {
-            throw new NotImplementedException();
+            return await _context.SortWithCapacityAsync(text);
         }
 
         public Task<Group> Update(Group group)

@@ -3,7 +3,7 @@ using MiniProject_CourseApplicaton.Controllers;
 using Service.Helpers.Extensions;
 
 EducationController educationController = new EducationController();
-
+GroupController groupController = new GroupController();
 
 
 //while (true)
@@ -23,13 +23,32 @@ EducationController educationController = new EducationController();
 
 //await educationController.CreateAsync();
 
-await educationController.GetAllAsync();
+//await educationController.GetAllAsync();
 
 //await educationController.GetByIdAsync();
 
-//await educationController.SearchByNameAsync();
+//await educationController.SearchByNameAsync()
 
-await educationController.GetAllWithGroupsAsync();
+////////////////await educationController.GetAllWithGroupsAsync();
+
+
+//await groupController.CreateAsync();
+
+await groupController.GetAllAsync();
+
+//await groupController.DeleteAsync();
+
+//await groupController.GetByIdAsync();
+
+//await groupController.SearchByNameAsync();
+
+//await groupController.SortWithCapacityAsync();
+await groupController.FilterByEducationNameAsync();
+
+
+
+
+
 
 
 
