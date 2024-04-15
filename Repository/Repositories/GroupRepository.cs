@@ -73,7 +73,18 @@ namespace Repository.Repositories
 
         public async Task<List<Group>> SortWithCapacityAsync(string text)
         {
-            return await _context.SortWithCapacityAsync(text);
+            if (text.ToLower().Trim() == "asc")
+            {
+                return await _context.Groups.OrderBy(m => m.Capacity).ToListAsync();
+            }
+            else if (text.ToLower().Trim() == "desc")
+            {
+                return await _context.Groups.OrderByDescending(m => m.Capacity).ToListAsync();
+            }
+            else
+            {
+                throw new Exception("Incorrect Operation");
+            }
         }
 
         public Task<Group> Update(Group group)

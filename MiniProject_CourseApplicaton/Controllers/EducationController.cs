@@ -65,7 +65,7 @@ namespace MiniProject_CourseApplicaton.Controllers
                 try
                 {
                     DateTime time = DateTime.Now;
-                    await _educationService.CreateAsync(new Domain.Models.Education { Name = eduname.Trim().ToLower(), Color = color.Trim().ToLower(),createdDate=time });
+                    await _educationService.CreateAsync(new Domain.Models.Education { Name = eduname.Trim(), Color = color.Trim(),createdDate=time });
                     ConsoleColor.Green.WriteConsole("Data successfully added");
                 }
                 catch (Exception ex)

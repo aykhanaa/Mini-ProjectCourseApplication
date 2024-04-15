@@ -28,13 +28,23 @@ namespace MiniProject_CourseApplicaton.Controllers
                 ConsoleColor.Red.WriteConsole("Input can't be empty");
                 goto GroupName;
             }
+            var result = await _groupService.GetAllAsync();
+
+            if (result.Any(m => m.Name == name))
+            {
+                ConsoleColor.Red.WriteConsole("Please add new name.This name is exsist");
+                goto GroupName;
+            }
+           
+
             ConsoleColor.Blue.WriteConsole("Please choose education Id :");
             var response = await _educatonServices.GetAllAsync();
             foreach (var item in response)
             {
 
-                ConsoleColor.Yellow.WriteConsole("Id" + item.Id + " Name" + item.Name);
+                ConsoleColor.Yellow.WriteConsole($"Id: { item.Id} ,Name: {item.Name}");
             }
+
         EducationName: Console.WriteLine("Choose Education id ");
             string str = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(str))
@@ -55,7 +65,6 @@ namespace MiniProject_CourseApplicaton.Controllers
                     return;
                 }
 
-
             Capacity: Console.WriteLine("Add Group Capacity");
                 string capacityStr = Console.ReadLine();
                 int capacity;
@@ -65,7 +74,7 @@ namespace MiniProject_CourseApplicaton.Controllers
                     DateTime time = DateTime.Now;
 
 
-                    await _groupService.CreateAsync(new Domain.Models.Group { Name = name.Trim().ToLower(), EducationId = education.Id, Capacity = capacity, createdDate = time });
+                    await _groupService.CreateAsync(new Domain.Models.Group { Name = name.Trim(), EducationId = education.Id, Capacity = capacity, createdDate = time });
                     ConsoleColor.Green.WriteConsole("Data succesfuly added");
                 }
                 else
@@ -188,87 +197,40 @@ namespace MiniProject_CourseApplicaton.Controllers
             }
         }
 
-        public async Task FilterByEducationNameAsync()
+
+
+        public async Task GetAllWithEducationIdAsync()
         {
-            ConsoleColor.Yellow.WriteConsole("Add education name'");
-        Education: string name  = Console.ReadLine();
+            ConsoleColor.Yellow.WriteConsole("Add  Education id:");
+        Id: string eduId = Console.ReadLine();
 
-            if (string.IsNullOrWhiteSpace(name))
+            int id;
+            bool isCorrectIdFormat = int.TryParse(eduId, out id);
+            if(isCorrectIdFormat) 
+
+            try
             {
-                ConsoleColor.Red.WriteConsole("Input can not input");
-                goto Education;
-            }
-            else
-            {
-                try
+                var datas = await _groupService.GetAllWithEducationIdAsync(id);
+
+                if(datas.Count == 0)
                 {
-                    var result = await _groupService.FilterByEducationNameAsync(name);
-                    if (result.Count !=0)
-                    {
-                        foreach (var item in result)
-                        {
-                            string data = $"Group name :{item.Name},Education :{item.Education.Name}";
-                            Console.WriteLine(data);
-                        }
-                    }
-                    else
-                    {
-                        ConsoleColor.Red.WriteConsole("This study could not be found ");
-                        goto Education;
-                    }
-                }
-
-                catch (Exception ex)
-                {
-                    ConsoleColor.Red.WriteConsole(ex.Message);
-                    goto Education;
-                }
-            }
-        }
-        public async Task GetAllWithEducationIdAsync(int id)
-        {
-            ConsoleColor.Yellow.WriteConsole("Add Group education id:");
-           Id: string str = Console.ReadLine();
-
-            bool isCorrectIdFormat = int.TryParse(str, out id);
-
-            if(string.IsNullOrWhiteSpace(str) )
-            {
-                ConsoleColor.Red.WriteConsole("Input can not empty ");
-                goto Id;
-            }
-
-            if (isCorrectIdFormat)
-            {
-                try
-                {
-                    List<Group> response = await _groupService.GetAllWithEducationIdAsync(id);
-
-                    if (response.Count == 0)
-                    {
-                        ConsoleColor.Red.WriteConsole("Education Id not found");
-                        goto Id;
-                    }
-                    else
-                    {
-                        foreach (var item in response)
-                        {
-                            string data = $"Id:{item.Id}, Group name : {item.Name}, Group Capacity : {item.Capacity}, Group educationId :{item.EducationId}";
-                            Console.WriteLine(data);
-                        }
-                    }
-                }
-                catch(Exception ex)
-                {
-                    ConsoleColor.Red.WriteConsole(ex.Message);
+                    ConsoleColor.Red.WriteConsole("Data not found");
                     goto Id;
                 }
+                foreach (var item in datas)
+                {
+                    string data = $"Name:{item.Name},Education:{item.Name}";
+                    ConsoleColor.Blue.WriteConsole(data);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ConsoleColor.Red.WriteConsole("Education Id not found,please write correct id");
+                ConsoleColor.Red.WriteConsole(ex.Message);
                 goto Id;
             }
+          
+
+           
         
 
 

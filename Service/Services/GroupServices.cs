@@ -70,19 +70,8 @@ namespace Service.Services
 
         public async Task<List<Group>> SortWithCapacityAsync(string text)
         {
-            //return await _context.SortWithCapacityAsync(text);
-            if(text == "Asc")
-            {
-                return await _context.Groups.OrderBy(m => m.Capacity).ToListAsync();
-            }
-            else if(text == "Desc")
-            {
-                return await _context.Groups.OrderByDescending(m => m.Capacity).ToListAsync();
-            }
-            else
-            {
-                throw new Exception("Invalid filter");
-            }
+            return await _context.SortWithCapacityAsync(text);
+            
             
         }
 
